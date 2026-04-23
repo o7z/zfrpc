@@ -12,10 +12,10 @@ npm install -g @o7z/zfrpc
 
 ```bash
 # 开放 zfrpc Web 界面端口
-sudo ufw allow 8889
+sudo ufw allow 11111
 
 # 或使用 firewalld
-sudo firewall-cmd --add-port=8889/tcp --permanent
+sudo firewall-cmd --add-port=11111/tcp --permanent
 sudo firewall-cmd --reload
 ```
 
@@ -29,7 +29,7 @@ zfrpc --startup
 
 ### 4. 远程访问
 
-通过浏览器访问 `http://<服务器IP>:8889`。
+通过浏览器访问 `http://<服务器IP>:11111`。
 
 建议设置访问密码：
 
@@ -44,7 +44,7 @@ zfrpc -w yourpassword
 ```ini
 [zfrpc-web]
 type = tcp
-local_port = 8889
+local_port = 11111
 remote_port = 9000
 ```
 

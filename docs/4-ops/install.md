@@ -39,4 +39,4 @@ zfrpc -v
 zfrpc
 ```
 
-默认端口 8889，无密码保护。访问 `http://localhost:8889`。
+默认端口 11111，无密码保护。访问 `http://localhost:11111`。
