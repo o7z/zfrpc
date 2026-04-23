@@ -1,6 +1,6 @@
 {
   "name": "@o7z/zfrpc",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A web-based frpc process and configuration management service",
   "license": "MIT",
   "author": "o7z",
