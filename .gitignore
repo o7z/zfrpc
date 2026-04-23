@@ -1,0 +1,13 @@
+node_modules/
+build/
+.svelte-kit/
+bin/*.js
+zfrpc-config.json
+.zfrpc.pid
+*.log
+*.tgz
+.DS_Store
+
+.claude/
+.omc/
+opencode.json

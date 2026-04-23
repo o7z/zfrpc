@@ -1,0 +1,12 @@
+title: 运维指南
+order: 5
+pages:
+  install:
+    title: 安装指南
+    order: 1
+  usage:
+    title: 使用指南
+    order: 2
+  deploy:
+    title: 部署指南
+    order: 3

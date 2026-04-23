@@ -1,0 +1,12 @@
+title: 整体架构
+order: 3
+pages:
+  architecture:
+    title: 架构概览
+    order: 1
+  cli:
+    title: CLI 设计
+    order: 2
+  process-mgmt:
+    title: 进程管理
+    order: 3

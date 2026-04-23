@@ -1,0 +1,9 @@
+title: 项目愿景
+order: 2
+pages:
+  vision:
+    title: 为什么做这个项目
+    order: 1
+  scenario:
+    title: 使用场景
+    order: 2

@@ -1,0 +1,47 @@
+{
+  "name": "zfrpc",
+  "version": "0.1.0",
+  "description": "本地 frpc 进程与配置管理服务",
+  "license": "MIT",
+  "author": "o7z",
+  "type": "module",
+  "bin": {
+    "zfrpc": "./bin/cli.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/o7z/zfrpc"
+  },
+  "files": [
+    "bin",
+    "build",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build && tsc -p tsconfig.bin.json && node -e \"import('node:fs').then(m=>m.chmodSync('bin/cli.js',0o755))\"",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "prepublishOnly": "npm run build",
+    "release": "node scripts/release.mjs",
+    "start": "node bin/cli.js"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.0.8",
+    "ini": "^4.1.3",
+    "lucide-svelte": "^1.0.1"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "^5.2.0",
+    "@sveltejs/kit": "^2.5.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "typescript": "^5.5.0",
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,15 @@
+title: 详细设计
+order: 4
+pages:
+  config-parser:
+    title: 配置解析
+    order: 1
+  startup-service:
+    title: 开机自启
+    order: 2
+  web-ui:
+    title: Web 界面
+    order: 3
+  data-flow:
+    title: 数据流
+    order: 4
