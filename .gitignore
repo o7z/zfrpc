@@ -11,3 +11,5 @@ zfrpc-config.json
 .claude/
 .omc/
 opencode.json
+.playwright-mcp/
+dashboard.png
