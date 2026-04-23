@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && tsc -p tsconfig.bin.json && node -e \"import('node:fs').then(m=>m.chmodSync('bin/cli.js',0o755))\"",
+    "build": "vite build && tsc -p tsconfig.bin.json && esbuild bin/cli.ts --outfile=bin/cli.js --format=esm --platform=node --packages=external && node -e \"import('node:fs').then(m=>m.chmodSync('bin/cli.js',0o755))\"",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "prepublishOnly": "npm run build",
