@@ -7,7 +7,7 @@
   let actionLoading = $state<string | null>(null);
   let statusEventSource: EventSource | null = null;
   let logEventSource: EventSource | null = null;
-  let configs = $state<{ name: string; path: string; active: boolean }[]>([]);
+  let configs = $state<{ name: string; path: string }[]>([]);
 
   let logs = $state<LogEntry[]>([]);
   let levelFilter = $state('all');
@@ -61,16 +61,21 @@
       const res = await fetch('/api/config');
       const data = await res.json();
       configs = data.configs || [];
+      if (!configPath && configs.length > 0) {
+        configPath = configs[0].path;
+      }
     } catch {}
   }
 
   onMount(() => {
+    loadConfigs();
+
     statusEventSource = new EventSource('/api/events/status');
     statusEventSource.onmessage = (e) => {
       try {
         const data = JSON.parse(e.data);
         status = data.status;
-        configPath = data.configPath;
+        if (data.configPath) configPath = data.configPath;
       } catch {}
     };
 
@@ -107,11 +112,10 @@
         <span class="status-info">运行时长: {formatUptime(status.uptime)}</span>
         <span class="status-info">配置: {configPath}</span>
       {:else}
-        <span class="status-info muted">未运行</span>
         {#if configs.length > 0}
           <select bind:value={configPath} class="config-select">
             {#each configs as c}
-              <option value={c.path}>{c.name}{c.active ? ' (活跃)' : ''}</option>
+              <option value={c.path}>{c.name}</option>
             {/each}
           </select>
         {:else}
@@ -181,7 +185,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: 0.75rem 1rem;
   }
 
@@ -189,12 +193,18 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow: hidden;
   }
 
   .status-left h2 {
     margin: 0;
     white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    flex-shrink: 0;
   }
 
   .status-info {
@@ -209,6 +219,9 @@
     background: var(--color-bg);
     color: var(--color-text);
     font-size: 0.85rem;
+    width: auto;
+    min-width: 0;
+    flex-shrink: 1;
   }
 
   .actions {

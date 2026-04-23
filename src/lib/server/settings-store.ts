@@ -24,14 +24,12 @@ export interface ZfrpcSettings {
   frpcPath: string;
   frpcDir: string;
   frpcStartup: boolean;
-  activeFrpcConfig: string;
 }
 
 const DEFAULTS: ZfrpcSettings = {
   frpcPath: '',
   frpcDir: '',
   frpcStartup: false,
-  activeFrpcConfig: ''
 };
 
 export function loadSettings(): ZfrpcSettings {
@@ -58,10 +56,6 @@ export function saveSettings(settings: Partial<ZfrpcSettings>): ZfrpcSettings {
 export function getFrpcPath(): string {
   const settings = loadSettings();
   return settings.frpcPath || process.env.ZFRPC_FRPC_PATH || 'frpc';
-}
-
-export function getActiveFrpcConfig(): string {
-  return loadSettings().activeFrpcConfig;
 }
 
 export interface FrpcPathValidation {

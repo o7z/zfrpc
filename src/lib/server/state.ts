@@ -1,6 +1,6 @@
 import { FrpcManager } from './frpc-manager';
 import type { LogEntry, FrpcProcessStatus } from '$lib/types';
-import { getFrpcPath, getActiveFrpcConfig } from './settings-store';
+import { getFrpcPath } from './settings-store';
 import { EventEmitter } from 'node:events';
 
 class StateEvents extends EventEmitter {}
@@ -29,7 +29,7 @@ export function getStatus(): { status: FrpcProcessStatus; configPath: string | n
   const mgr = getManager();
   return {
     status: mgr.getStatus(),
-    configPath: mgr.getConfigPath() || getActiveFrpcConfig()
+    configPath: mgr.getConfigPath()
   };
 }
 

@@ -22,7 +22,6 @@
     frpcPath: '',
     frpcDir: '',
     frpcStartup: false,
-    activeFrpcConfig: '',
     hasPassword: false
   });
   let saved = $state(false);

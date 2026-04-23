@@ -1,12 +1,11 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { getManager, addLog, stateEvents, getStatus } from '$lib/server/state';
-import { getActiveFrpcConfig } from '$lib/server/settings-store';
 
 export const GET: RequestHandler = () => {
   const manager = getManager();
   const status = manager.getStatus();
-  const configPath = manager.getConfigPath() || getActiveFrpcConfig();
+  const configPath = manager.getConfigPath();
   return json({ status, configPath });
 };
 
@@ -18,7 +17,7 @@ export const POST: RequestHandler = async ({ request }) => {
   let success = false;
   switch (action) {
     case 'start': {
-      const configPath = body.configPath || getActiveFrpcConfig();
+      const configPath = body.configPath;
       if (configPath) {
         success = manager.start(configPath);
       }
@@ -28,7 +27,7 @@ export const POST: RequestHandler = async ({ request }) => {
       success = manager.stop();
       break;
     case 'restart': {
-      const configPath = manager.getConfigPath() || getActiveFrpcConfig();
+      const configPath = manager.getConfigPath();
       if (configPath) {
         manager.stop();
         setTimeout(() => {

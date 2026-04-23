@@ -1,14 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import Switch from '$lib/components/Switch.svelte';
-  import { CircleDot, Plus, Trash2, Save, Copy } from 'lucide-svelte';
+  import { Plus, Trash2, Save, Copy } from 'lucide-svelte';
   import Modal from '$lib/components/Modal.svelte';
 
   interface ConfigFile {
     name: string;
     path: string;
     format: 'toml';
-    active: boolean;
   }
 
   let configs = $state<ConfigFile[]>([]);
@@ -56,8 +55,7 @@
       const res = await fetch('/api/config');
       const data = await res.json();
       configs = data.configs || [];
-      const active = configs.find(c => c.active);
-      if (active) await selectConfig(active);
+      if (configs.length > 0) await selectConfig(configs[0]);
     } catch {}
   }
 
@@ -240,11 +238,6 @@
       {#each configs as config}
         <div class="config-row">
           <button class="config-item" class:selected={selectedConfig?.path === config.path} onclick={() => selectConfig(config)}>
-            {#if config.active}
-              <CircleDot size={14} class="active-icon" />
-            {:else}
-              <CircleDot size={14} class="inactive-icon" />
-            {/if}
             <span class="config-name">{config.name}</span>
           </button>
         </div>
@@ -512,10 +505,6 @@
   .config-item { display: flex; align-items: center; gap: 0.5rem; flex: 1; padding: 0.5rem; border-radius: var(--radius); cursor: pointer; background: none; border: none; color: var(--color-text); text-align: left; }
   .config-item:hover { background: var(--color-surface-hover); }
   .config-item.selected { background: var(--color-primary); color: white; }
-  .config-item.selected .active-icon { color: white; }
-  .config-item.selected .inactive-icon { color: rgba(255,255,255,0.5); }
-  .active-icon { color: var(--color-success); flex-shrink: 0; }
-  .inactive-icon { color: var(--color-border); flex-shrink: 0; }
   .config-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.85rem; }
   .config-main { flex: 1; display: flex; flex-direction: column; min-width: 0; border-right: 1px solid var(--color-border); }
   .config-main-header { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; border-bottom: 1px solid var(--color-border); flex-shrink: 0; }

@@ -15,7 +15,6 @@ export interface ConfigFile {
   name: string;
   path: string;
   format: 'toml';
-  active: boolean;
   type: 'frps' | 'frpc' | 'unknown';
 }
 

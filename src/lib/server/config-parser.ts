@@ -67,7 +67,6 @@ export interface ConfigFile {
   name: string;
   path: string;
   format: 'toml';
-  active: boolean;
 }
 
 const COMMON_PATHS = [
@@ -101,7 +100,7 @@ export function scanConfigs(): ConfigFile[] {
           if (seen.has(fullPath)) continue;
           seen.add(fullPath);
           const name = file.replace(/\.toml$/, '');
-          configs.push({ name, path: fullPath, format: 'toml', active: false });
+          configs.push({ name, path: fullPath, format: 'toml' });
         }
       }
     } catch {}

@@ -9,7 +9,6 @@ export const GET: RequestHandler = () => {
     frpcPath: settings.frpcPath,
     frpcDir: settings.frpcDir || process.env.ZFRPC_DIR || process.cwd(),
     frpcStartup: settings.frpcStartup,
-    activeFrpcConfig: settings.activeFrpcConfig,
     hasPassword: !!process.env.ZFRPC_PASSWORD
   });
 };
