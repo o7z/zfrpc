@@ -6,10 +6,13 @@ import { handler } from '../build/handler.js';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as os from 'node:os';
-import { createRequire } from 'node:module';
+import { readFileSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const require = createRequire(import.meta.url);
-const VERSION: string = require('../package.json').version;
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const pkg = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'));
+const VERSION: string = pkg.version;
 
 function getDataDir(): string {
   if (process.env.ZFRPC_DIR) return process.env.ZFRPC_DIR;
