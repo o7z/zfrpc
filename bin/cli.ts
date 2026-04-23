@@ -6,8 +6,10 @@ import { handler } from '../build/handler.js';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as os from 'node:os';
+import { createRequire } from 'node:module';
 
-const VERSION = '0.1.0';
+const require = createRequire(import.meta.url);
+const VERSION: string = require('../package.json').version;
 
 function getDataDir(): string {
   if (process.env.ZFRPC_DIR) return process.env.ZFRPC_DIR;
