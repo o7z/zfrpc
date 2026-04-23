@@ -1,5 +1,5 @@
 {
-  "name": "zfrpc",
+  "name": "@o7z/zfrpc",
   "version": "0.1.0",
   "description": "本地 frpc 进程与配置管理服务",
   "license": "MIT",
