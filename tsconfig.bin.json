@@ -7,9 +7,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "types": ["node"],
-    "outDir": "bin",
-    "rootDir": "bin"
+    "noEmit": true,
+    "types": ["node"]
   },
   "include": ["bin/*.ts"],
   "exclude": ["bin/*.js"]

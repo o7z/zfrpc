@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { createServer } from 'node:http';
+// @ts-expect-error -- build output
 import { handler } from '../build/handler.js';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -24,7 +25,7 @@ function ensureDataDir(): string {
   return dir;
 }
 
-function parseArgs(args) {
+function parseArgs(args: string[]) {
   const opts = {
     port: 11111,
     password: '',
@@ -183,6 +184,7 @@ async function main() {
 
   async function shutdown() {
     try {
+      // @ts-expect-error -- build output
       const { getManager } = await import('../build/server/chunks/state.js');
       getManager().forceStop();
     } catch {}
