@@ -92,5 +92,5 @@ try {
 run('git push --follow-tags origin main');
 
 const newVersion = JSON.parse(readFileSync(pkgPath, 'utf-8')).version;
-console.log(`\n✔ released zfrpc@${newVersion}`);
-console.log(`  https://www.npmjs.com/package/zfrpc/v/${newVersion}`);
+console.log(`\n✔ released ${pkg.name}@${newVersion}`);
+console.log(`  https://www.npmjs.com/package/${pkg.name}/v/${newVersion}`);
